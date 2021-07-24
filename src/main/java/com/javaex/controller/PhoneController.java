@@ -2,6 +2,7 @@ package com.javaex.controller;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -19,6 +20,9 @@ public class PhoneController {
 		
 	
 		//필드
+		//@오토와이어드 자동연결 (dao)
+		@Autowired
+		private PhoneDao phoneDao;
 		//생성자	
 		//메소드 gs
 		//메소드 일반
@@ -29,8 +33,9 @@ public class PhoneController {
 	public String list(Model model) {
 		System.out.println("[phoneController.list]");
 		
+		
 		//Dao 사용
-		PhoneDao phoneDao = new PhoneDao();
+		//PhoneDao phoneDao = new PhoneDao();
 		
 		//Dao의 메소드 사용
 		List<PersonVo> personList = phoneDao.getPersonList();
@@ -48,7 +53,7 @@ public class PhoneController {
 		System.out.println("delete들어옴");
 		
 		
-		PhoneDao phoneDao = new PhoneDao();
+		//PhoneDao phoneDao = new PhoneDao();
 		phoneDao.personDelete(id);
 		
 		
@@ -71,7 +76,7 @@ public class PhoneController {
 	public String updateForm(Model model, @RequestParam("no") int id) {
 		System.out.println("updateForm");
 		
-		PhoneDao phoneDao = new PhoneDao();
+		//PhoneDao phoneDao = new PhoneDao();
 		PersonVo personVo = phoneDao.getPerson(id);
 	
 		
@@ -91,7 +96,7 @@ public class PhoneController {
 		
 		System.out.println(personVo);
 		
-		PhoneDao phoneDao = new PhoneDao();
+		//PhoneDao phoneDao = new PhoneDao();
 		phoneDao.personUpdate(personVo);
 		
 		
@@ -123,7 +128,7 @@ public class PhoneController {
 			
 			
 			//Dao 의 personInser() 이용해서 데이터 저장
-			PhoneDao phoneDao = new PhoneDao();
+			//PhoneDao phoneDao = new PhoneDao();
 			phoneDao.personInsert(personVo);
 			
 			
@@ -171,9 +176,9 @@ public class PhoneController {
 			System.out.println("pathVariable read");
 			
 			//**********ex*******************
-			//localhost:8088/phonebook3/board/read/1
-			//localhost:8088/phonebook3/board/read/2
-			//localhost:8088/phonebook3/board/read/3
+			//localhost:8088/phonebook4/board/read/1
+			//localhost:8088/phonebook4/board/read/2
+			//localhost:8088/phonebook4/board/read/3
 			
 			System.out.println(boardNo);
 			return "";
